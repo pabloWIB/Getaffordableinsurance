@@ -1101,12 +1101,8 @@
     [type='button'],
     [type='reset'],
     [type='submit'] {
-      -webkit-appearance: button;
-      /* 1 */
       background-color: transparent;
-      /* 2 */
       background-image: none;
-      /* 2 */
     }
 
     :-moz-focusring {
@@ -1127,10 +1123,7 @@
     }
 
     [type='search'] {
-      -webkit-appearance: textfield;
-      /* 1 */
       outline-offset: -2px;
-      /* 2 */
     }
 
     ::-webkit-search-decoration {
@@ -1219,9 +1212,6 @@
     embed,
     object {
       display: block;
-      /* 1 */
-      vertical-align: middle;
-      /* 2 */
     }
 
     img,
@@ -2080,11 +2070,14 @@
                     <div id="userBlock2" class="flex items-start justify-end pt-4 hidden">
                       <div class="mr-3 receiver-chat">
                         <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
-                          <p id="msg9yes" class="text-md hidden msg-h">
+                          <p id="msg9one" class="text-md hidden msg-h">
                             1
                           </p>
-                          <p id="msg9no" class="text-md hidden msg-h">
+                          <p id="msg9two" class="text-md hidden msg-h">
                             2
+                          </p>
+                          <p id="msg9three" class="text-md hidden msg-h">
+                            3
                           </p>
                         </div>
                       </div>
@@ -2095,6 +2088,57 @@
                       </div>
                     </div>
 
+                    <!--  -->
+
+                    <div id="agentBlock456" class="flex items-end w-5/6 hidden pt-4">
+                      <div class="flex-shrink-0">
+                        <img decoding="async" class="w-8 h-8 rounded-full"
+                          src="https://affordablecare4you.com/wp-content/uploads/2024/11/staff.jpg" alt="Sender Avatar">
+                      </div>
+
+                      <div class="ml-3 agent-chat">
+                        <div id="msg456" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                          <p class="text-md text-gray-800">
+                            Are you a home owner?
+                          </p>
+                        </div>
+                        <div id="msg457" class="p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                          <div class="grid grid-rows-1 grid-cols-2 gap-x-3">
+                            <button
+                              class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn flex-text"
+                              id="sno456" type="button" data-form-step="456" data-form-value="Yes">
+                              YES
+                            </button>
+                            <button
+                              class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 flex-text"
+                              id="syes456" type="button" data-form-step="456" data-form-value="No">
+                              NO
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="userBlock456" class="flex items-start justify-end hidden">
+                      <div class="mr-3 receiver-chat">
+                        <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
+                          <p id="msg458yes" class="text-md hidden msg-h">
+                            YES
+                          </p>
+                          <p id="msg458no" class="text-md hidden msg-h">
+                            NO
+                          </p>
+                        </div>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <img decoding="async" class="w-8 h-8 rounded-full"
+                          src="https://affordablecare4you.com/wp-content/uploads/2024/11/profile.png"
+                          alt="Receiver Avatar">
+                      </div>
+                    </div>
+
+                    <!--  -->
+
                     <div id="agentBlock3" class="flex items-end w-5/6 hidden pt-4">
                       <div class="flex-shrink-0">
                         <img decoding="async" class="w-8 h-8 rounded-full"
@@ -2104,7 +2148,7 @@
                       <div class="ml-3 agent-chat">
                         <div id="msg10" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                           <p class="text-md text-gray-800">
-                            Are you a home owner?
+                            Are you paying more than $40/Month for Auto Insurance?
                           </p>
                         </div>
                         <div id="msg11" class="p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
@@ -2186,7 +2230,7 @@
                             <a id="PrimaryNumber" href="tel:+1-18332484802"
                               class="text-white font-bold bg-blue-500 py-5 px-4 hidden ttc-button" onclick="">
 
-                              <button id="autocall" onclick="makePhoneCall()" class="congratulations-phoneCall ">
+                              <button class="congratulations-phoneCall ">
                                 <i class="fas fa-solid fa-phone-volume rotating-icon"></i>
                                 18332484802
                               </button></a>
@@ -2266,13 +2310,6 @@
 
         <script>
 
-          function makePhoneCall() {
-            fbq('track', 'Lead');
-            dataLayer.push({ 'event': 'call' });
-            ttq.track('Contact', { "contents": [{ "content_name": "<content_name>" }] });
-            nbpix('event', 'contact');
-          }
-
           $(document).ready(function () {
 
             setTimeout(function () {
@@ -2302,8 +2339,6 @@
 
               if (currentStep == 1) {
                 if (buttonValue == 'Yes') {
-
-
                   scrollToBottom();
                   $('#agentBlock2 .agent-chat').prepend(typingEffect());
                   $('#msg4').addClass('hidden');
@@ -2338,36 +2373,50 @@
               }
 
               if (currentStep == 2) {
-                $('#agentBlock3 .agent-chat').prepend(typingEffect());
                 $('#msg8').addClass('hidden');
                 $('#userBlock2').removeClass('hidden');
-                if (buttonValue == 'No') {
-                  $('#msg9no').removeClass('hidden');
-                  $('#hdnApprovalStatus').val('no');
-                  $('#msg12medicare').removeClass('hidden');
+
+                if (buttonValue == '1') {
+                  $('#msg9one').removeClass('hidden');
+                  $('#hdnApprovalStatus').val('1');
+                }
+                else if (buttonValue == '2') {
+                  $('#msg9two').removeClass('hidden');
+                  $('#hdnApprovalStatus').val('2');
+                }
+                else if (buttonValue == '3') {
+                  $('#msg9three').removeClass('hidden');
+                  $('#hdnApprovalStatus').val('3');
+                }
+
+                scrollToBottom();
+                setTimeout(function () {
+                  $('#agentBlock456').removeClass('hidden');
+                  scrollToBottom();
                   setTimeout(function () {
-                    $('#agentBlock4').removeClass('hidden');
+                    $('.temp-typing').remove();
+                    $('#msg456').removeClass('hidden').after(typingEffect());
                     scrollToBottom();
                     setTimeout(function () {
                       $('.temp-typing').remove();
-                      $('#msg18').removeClass('hidden').after(typingEffect());
+                      $('#msg457').removeClass('hidden');
                       scrollToBottom();
-                      setTimeout(function () {
-                        $('.temp-typing').remove();
-                        $('#msg19').removeClass('hidden');
-                        scrollToBottom();
-                        setTimeout(function () {
-                          $('#disconnected').removeClass('hidden');
-                          $('#disconnected').removeClass('hidden');
-                          scrollToBottom();
-                        }, 1250);
-                      }, 1250);
-                    }, 1250);
-                  }, 1250);
-                  return false;
+                    }, 0);
+                  }, 1750);
+                }, 50);
+              }
+
+              if (currentStep == 456) {
+                $('#msg457').addClass('hidden');
+                $('#userBlock456').removeClass('hidden');
+
+                if (buttonValue == 'Yes') {
+                  $('#msg458yes').removeClass('hidden');
                 } else {
-                  $('#msg9yes').removeClass('hidden');
+                  $('#msg458no').removeClass('hidden');
                 }
+
+                // Continue to Block3
                 scrollToBottom();
                 setTimeout(function () {
                   $('#agentBlock3').removeClass('hidden');
@@ -2383,17 +2432,14 @@
                     }, 0);
                   }, 1750);
                 }, 50);
-
               }
 
               if (currentStep == 3) {
-
                 $('#agentBlock4 .agent-chat .agent-chat-2 #agentBlock5').prepend(typingEffect());
                 $('#msg11').addClass('hidden');
                 $('#userBlock3').removeClass('hidden');
 
                 if (buttonValue == 'Yes') {
-                  $('#msg8').addClass('hidden');
                   $('#msg12yes').removeClass('hidden');
                   setTimeout(function () {
                     $('#agentBlock4').removeClass('hidden');
@@ -2423,7 +2469,6 @@
                     }, 1250);
                   }, 250);
                 } else if (buttonValue == 'No') {
-                  $('#msg8').addClass('hidden');
                   $('#msg12no').removeClass('hidden');
                   setTimeout(function () {
                     $('#agentBlock5').removeClass('hidden');
@@ -2435,7 +2480,6 @@
                       setTimeout(function () {
                         $('.temp-typing').remove();
                         $('#msg26').removeClass('hidden');
-
                         scrollToBottom();
                         setTimeout(function () {
                           $('.temp-typing').remove();
@@ -2445,11 +2489,6 @@
                           setTimeout(function () {
                             window.location.href = "https://bestcarsavings.net/offers/";
                             scrollToBottom();
-                            setTimeout(function () {
-                              $('.temp-typing').remove();
-                              $('#msg17').removeClass('hidden');
-                              scrollToBottom();
-                            }, 1750);
                           }, 5000);
                         }, 1750);
                       }, 1750);
@@ -2474,7 +2513,6 @@
                 }
                 scrollToBottom();
               }
-
             });
 
             function scrollToBottom(elementId) {
@@ -2499,7 +2537,6 @@
             return string;
 
           }
-
 
         </script>
 
